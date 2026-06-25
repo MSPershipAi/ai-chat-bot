@@ -1,0 +1,194 @@
+{
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "hit_rate": "100.0%",
+    "mrr": 0.8889,
+    "k": 6,
+    "max_distance_threshold": 1.5
+  },
+  "per_question": [
+    {
+      "question": "What is the dress code for male employees?",
+      "expected_doc": "Pership Dress Code",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Pership Dress Code  Policy.pdf p.1",
+        "Pership Dress Code  Policy.pdf p.1",
+        "Pership Dress Code  Policy.pdf p.1",
+        "Pership Dress Code  Policy.pdf p.2",
+        "Pership Dress Code  Policy.pdf p.2",
+        "Pership Dress Code  Policy.pdf p.1"
+      ],
+      "score_stats": {
+        "min": 0.7365,
+        "max": 0.9089,
+        "mean": 0.8208
+      }
+    },
+    {
+      "question": "What should new recruits wear on their first day?",
+      "expected_doc": "Pership Dress Code",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Pership Dress Code  Policy.pdf p.2",
+        "Pership Dress Code  Policy.pdf p.1",
+        "Pership Dress Code  Policy.pdf p.2",
+        "Pership Dress Code  Policy.pdf p.1",
+        "Pership Group ICT Policy v3.pdf p.7",
+        "Pership Dress Code  Policy.pdf p.1"
+      ],
+      "score_stats": {
+        "min": 0.9694,
+        "max": 1.1402,
+        "mean": 1.0731
+      }
+    },
+    {
+      "question": "What is the mobile phone allowance policy for employees?",
+      "expected_doc": "Mobile Phone Allowance",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Mobile Phone Allowance Policy v5.pdf p.5",
+        "Mobile Phone Allowance Policy v5.pdf p.4",
+        "Mobile Phone Allowance Policy v5.pdf p.5",
+        "Mobile Phone Allowance Policy v5.pdf p.4",
+        "Mobile Phone Allowance Policy v5.pdf p.5",
+        "Mobile Phone Allowance Policy v5.pdf p.4"
+      ],
+      "score_stats": {
+        "min": 0.5633,
+        "max": 0.6538,
+        "mean": 0.6177
+      }
+    },
+    {
+      "question": "What are the ICT usage rules for employees?",
+      "expected_doc": "ICT Policy",
+      "expected_page": null,
+      "hit": true,
+      "rank": 2,
+      "retrieved_top": [
+        "Mobile Phone Allowance Policy v5.pdf p.4",
+        "Pership Group ICT Policy v3.pdf p.9",
+        "Pership Group ICT Policy v3.pdf p.19",
+        "Pership Group ICT Policy v3.pdf p.19",
+        "Mobile Phone Allowance Policy v5.pdf p.4",
+        "Mobile Phone Allowance Policy v5.pdf p.4"
+      ],
+      "score_stats": {
+        "min": 0.7577,
+        "max": 0.8784,
+        "mean": 0.8414
+      }
+    },
+    {
+      "question": "What is the acceptable use policy for company computers?",
+      "expected_doc": "ICT Policy",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Pership Group ICT Policy v3.pdf p.19",
+        "Pership Group ICT Policy v3.pdf p.19",
+        "Mobile Phone Allowance Policy v5.pdf p.4",
+        "Pership Group ICT Policy v3.pdf p.10",
+        "Pership Group ICT Policy v3.pdf p.14",
+        "Mobile Phone Allowance Policy v5.pdf p.4"
+      ],
+      "score_stats": {
+        "min": 0.8086,
+        "max": 1.0146,
+        "mean": 0.9534
+      }
+    },
+    {
+      "question": "What are the standard operating procedures for finance?",
+      "expected_doc": "Finance Standard Operating",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Finance Standard Operating Procedures.pdf p.11",
+        "Finance Standard Operating Procedures.pdf p.12",
+        "Finance Standard Operating Procedures.pdf p.13",
+        "Finance Standard Operating Procedures.pdf p.16",
+        "Finance Standard Operating Procedures.pdf p.17",
+        "Finance Standard Operating Procedures.pdf p.20"
+      ],
+      "score_stats": {
+        "min": 0.3402,
+        "max": 0.3402,
+        "mean": 0.3402
+      }
+    },
+    {
+      "question": "How should petty cash be managed according to the finance SOP?",
+      "expected_doc": "Finance Standard Operating",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Finance Standard Operating Procedures.pdf p.11",
+        "Finance Standard Operating Procedures.pdf p.12",
+        "Finance Standard Operating Procedures.pdf p.13",
+        "Finance Standard Operating Procedures.pdf p.16",
+        "Finance Standard Operating Procedures.pdf p.17",
+        "Finance Standard Operating Procedures.pdf p.20"
+      ],
+      "score_stats": {
+        "min": 0.6898,
+        "max": 0.6898,
+        "mean": 0.6898
+      }
+    },
+    {
+      "question": "What are the main business units of Pership Holdings?",
+      "expected_doc": "Pership Holdings Overview",
+      "expected_page": null,
+      "hit": true,
+      "rank": 1,
+      "retrieved_top": [
+        "Pership Holdings Overview.pdf p.1",
+        "Pership Holdings Overview.pdf p.3",
+        "Pership Holdings Q&A 02.pdf p.1",
+        "Pership Holdings Overview.pdf p.3",
+        "Pership Holdings Overview.pdf p.2",
+        "Pership Holdings Overview.pdf p.2"
+      ],
+      "score_stats": {
+        "min": 0.5044,
+        "max": 0.6415,
+        "mean": 0.5934
+      }
+    },
+    {
+      "question": "What is the vision of Pership Holdings?",
+      "expected_doc": "Pership Holdings Q",
+      "expected_page": null,
+      "hit": true,
+      "rank": 2,
+      "retrieved_top": [
+        "Pership Holdings Overview.pdf p.2",
+        "Pership Holdings Q&A 02.pdf p.1",
+        "Pership Holdings Overview.pdf p.1",
+        "Pership Holdings Overview.pdf p.2",
+        "Pership Holdings Overview.pdf p.1",
+        "Pership Holdings Overview.pdf p.1"
+      ],
+      "score_stats": {
+        "min": 0.578,
+        "max": 0.7067,
+        "mean": 0.6501
+      }
+    }
+  ],
+  "generated_at": "2026-06-09T12:14:44.316114"
+}

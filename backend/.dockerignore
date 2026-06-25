@@ -1,0 +1,17 @@
+.venv
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.git
+.github
+.gitignore
+.env
+.env.*
+FAISS_Index/
+uploaded_docs/
+temp_uploaded_docs/
+Voice_ai_log/
+test_*.py
+*.log

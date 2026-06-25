@@ -1,0 +1,26 @@
+# Dependencies / build artefacts
+node_modules
+.next
+out
+build
+
+# Version control
+.git
+.github
+
+# Local env files (never bake secrets into image)
+.env
+.env.*
+!.env.example
+
+# Logs & OS noise
+*.log
+.DS_Store
+Thumbs.db
+
+# Dev / editor config
+.gitignore
+README.md
+AGENTS.md
+CLAUDE.md
+*.md

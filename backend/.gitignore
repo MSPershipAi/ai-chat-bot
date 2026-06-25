@@ -1,0 +1,15 @@
+__pycache__/
+
+
+chat_history
+test*
+Test*
+*.wav
+uploaded_docs/
+Voice_ai_log/
+temp_uploaded_docs/
+
+config.json
+.env
+.venv/
+users.json
