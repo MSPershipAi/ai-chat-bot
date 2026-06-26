@@ -3,7 +3,7 @@ import os
 import logging
 import json
 from groq import Groq  # type: ignore
-from Vector_DB_Create import DocumentProcessor
+from vector_db_create import DocumentProcessor
 
 logger = logging.getLogger(__name__)
 

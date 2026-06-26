@@ -1,7 +1,7 @@
 from io import BytesIO
 import streamlit as st # type: ignore
-from Manager_Agent_01 import route_query
-from RAG_Agent import RAGAgent
+from manager_agent_01 import route_query
+from rag_agent import RAGAgent
 import os
 import re
 import json
@@ -9,7 +9,7 @@ from groq import Groq # type: ignore
 from pathlib import Path
 from scipy.io.wavfile import write as write_wav # type: ignore
 
-from Vector_DB_Create import DocumentProcessor
+from vector_db_create import DocumentProcessor
 # pyrefly: ignore [missing-import]
 from pathvalidate import sanitize_filename
 import sounddevice as sd # type: ignore

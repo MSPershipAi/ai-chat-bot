@@ -800,7 +800,7 @@ chown -R deploy:deploy /opt/equilibrium
 ```bash
 # Clone repository (or use your preferred method)
 cd /opt/equilibrium
-git clone https://github.com/your-repo/Equilibrium-Ai-Chat.git .
+git clone https://github.com/your-repo/pership-chatbot.git .
 
 # Copy and configure environment file
 cp .env.production.example .env.production

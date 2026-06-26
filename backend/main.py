@@ -31,9 +31,9 @@ from auth import (
 )
 
 # Core Agent imports
-from Manager_Agent_01 import route_query
-from RAG_Agent import RAGAgent
-from Vector_DB_Create import DocumentProcessor
+from manager_agent_01 import route_query
+from rag_agent import RAGAgent
+from vector_db_create import DocumentProcessor
 from embedding_eval import evaluate_embeddings, save_report, DEFAULT_TEST_CASES
 
 # Configure logging

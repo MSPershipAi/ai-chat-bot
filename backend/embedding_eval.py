@@ -31,7 +31,7 @@ from datetime import datetime
 from pathlib import Path
 from io import BytesIO
 
-from Vector_DB_Create import DocumentProcessor
+from vector_db_create import DocumentProcessor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

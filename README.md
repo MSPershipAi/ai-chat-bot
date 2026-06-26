@@ -1,7 +1,7 @@
-# Equilibrium-AI-Chat
+# Pership Chatbot
 
 <div align="center">
-    <img src="backend/Repo_IMGs/IMG_04.png" alt="Equilibrium-AI-Chat Logo" width="1200"/>
+    <img src="backend/Repo_IMGs/IMG_04.png" alt="Pership Chatbot Logo" width="1200"/>
 </div>
 
 <div align="justify">
@@ -213,5 +213,5 @@ This project is proprietary and confidential. © 2025 Pership Group. All rights 
 - **Website:** [www.pershipgroup.com](https://www.pershipgroup.com)
 
 <div align="center">
-    <img src="backend/Repo_IMGs/IMG_02.png" alt="Equilibrium-AI-Chat Footer" width="1200"/>
+    <img src="backend/Repo_IMGs/IMG_02.png" alt="Pership Chatbot Footer" width="1200"/>
 </div>
