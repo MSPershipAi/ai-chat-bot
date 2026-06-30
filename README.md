@@ -223,7 +223,7 @@ cp .env.example .env
 Edit `frontend/.env`:
 
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000/api
+NEXT_PUBLIC_API_BASE=http://localhost:8000
 ```
 
 #### 6. Install Frontend Dependencies & Run
@@ -254,6 +254,7 @@ docker compose up -d --build
 ```
 
 This starts three containers:
+
 - **`pership-chatbot-backend`** — FastAPI on port 8000
 - **`pership-chatbot-frontend`** — Next.js on port 3000
 - **`pership-chatbot-nginx`** — Nginx reverse proxy on ports 80 / 443
@@ -283,14 +284,14 @@ Once the backend and frontend are running, log in at `http://localhost:3000/logi
 
 ## 🔑 API Endpoints (Key Routes)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/login` | Authenticate and receive a session token |
-| `POST` | `/api/chat` | Send a message; returns routed agent response |
-| `POST` | `/api/upload-doc` | Upload a PDF to the RAG knowledge base |
-| `GET`  | `/api/documents` | List all indexed documents |
-| `DELETE` | `/api/documents/{name}` | Remove a document from the index |
-| `GET`  | `/api/users` | List all users (admin only) |
-| `POST` | `/api/users` | Create a new user (admin only) |
-| `DELETE` | `/api/users/{email}` | Delete a user (admin only) |
-| `GET`  | `/health` | Backend health check |
+| Method   | Endpoint                | Description                                   |
+| -------- | ----------------------- | --------------------------------------------- |
+| `POST`   | `/api/login`            | Authenticate and receive a session token      |
+| `POST`   | `/api/chat`             | Send a message; returns routed agent response |
+| `POST`   | `/api/upload-doc`       | Upload a PDF to the RAG knowledge base        |
+| `GET`    | `/api/documents`        | List all indexed documents                    |
+| `DELETE` | `/api/documents/{name}` | Remove a document from the index              |
+| `GET`    | `/api/users`            | List all users (admin only)                   |
+| `POST`   | `/api/users`            | Create a new user (admin only)                |
+| `DELETE` | `/api/users/{email}`    | Delete a user (admin only)                    |
+| `GET`    | `/health`               | Backend health check                          |

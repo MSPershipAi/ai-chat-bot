@@ -116,11 +116,11 @@
 
 ### Step 0.1: VPS Hardware Requirements
 
-| Resource | Minimum      | Recommended   |
-|----------|-------------|---------------|
-| RAM      | 2 GB        | 4 GB          |
-| CPU      | 1 vCPU      | 2 vCPU        |
-| Disk     | 25 GB SSD   | 40 GB SSD     |
+| Resource | Minimum          | Recommended      |
+| -------- | ---------------- | ---------------- |
+| RAM      | 2 GB             | 4 GB             |
+| CPU      | 1 vCPU           | 2 vCPU           |
+| Disk     | 25 GB SSD        | 40 GB SSD        |
 | OS       | Ubuntu 22.04 LTS | Ubuntu 22.04 LTS |
 
 > ⚠️ **Critical**: Ollama + embeddinggemma requires ~1-1.5 GB RAM. Running on a 1GB VPS **will cause OOM crashes**. Use minimum 2GB, preferably 4GB.
@@ -569,7 +569,7 @@ OLLAMA_BASE_URL=http://host.docker.internal:11434
 
 # Frontend
 NEXT_PUBLIC_API_BASE=/api
-NEXT_PUBLIC_API_URL=https://yourdomain.com/api
+NEXT_PUBLIC_API_BASE=https://yourdomain.com
 ```
 
 > ⚠️ **Critical**: `OLLAMA_BASE_URL` must point to `http://host.docker.internal:11434` so the backend container can reach Ollama running on the VPS host. The `extra_hosts: host.docker.internal:host-gateway` entry in `docker-compose.yml` makes this work on Linux.
@@ -581,6 +581,7 @@ NEXT_PUBLIC_API_URL=https://yourdomain.com/api
 ### Step 2.1: GitHub Actions Workflow
 
 **Prerequisites**: Add the following secrets to your GitHub repository (Settings -> Secrets and variables -> Actions):
+
 - `DOCKER_USERNAME`: Your Docker Hub username
 - `DOCKER_PASSWORD`: Your Docker Hub password or access token
 - `VPS_HOST`: Your VPS IP address
@@ -687,7 +688,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: docker-build
-    
+
     steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -943,14 +944,14 @@ done
 
 ## 💰 Cost Breakdown
 
-| Item                      | Cost/Month  | Notes                                                          |
-| ------------------------- | ----------- | -------------------------------------------------------------- |
+| Item                      | Cost/Month  | Notes                                                               |
+| ------------------------- | ----------- | ------------------------------------------------------------------- |
 | VPS (Linode/DigitalOcean) | **$12-18**  | **2GB RAM min** required for Ollama + all services. 4GB recommended |
-| Domain (optional)         | $0-1        | Domains typically ~$10/year                                    |
-| SSL Certificate           | $0          | Let's Encrypt (free)                                           |
-| Neon PostgreSQL           | $0-19       | Free tier (0.5GB) covers <100 users; paid for more             |
-| Backups                   | $0-2        | Offsite backup storage                                         |
-| **Total**                 | **~$12-20** | Includes local Ollama inference (no OpenAI/Groq embedding cost)|
+| Domain (optional)         | $0-1        | Domains typically ~$10/year                                         |
+| SSL Certificate           | $0          | Let's Encrypt (free)                                                |
+| Neon PostgreSQL           | $0-19       | Free tier (0.5GB) covers <100 users; paid for more                  |
+| Backups                   | $0-2        | Offsite backup storage                                              |
+| **Total**                 | **~$12-20** | Includes local Ollama inference (no OpenAI/Groq embedding cost)     |
 
 > ⚠️ **VPS RAM Warning**: Ollama running `embeddinggemma` needs ~1-2GB RAM on top of your app services. A **1GB VPS will OOM (out-of-memory crash)**. Use at least 2GB RAM VPS.
 
