@@ -140,7 +140,7 @@ function ChatApp({ user }: { user: AuthUser }) {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { role: "ai", content: "⚠️ Error connecting to the Equilibrium AI service." }
+        { role: "ai", content: "⚠️ Error connecting to the Pership AI service." }
       ]);
     } finally {
       setIsLoading(false);

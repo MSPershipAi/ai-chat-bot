@@ -40,9 +40,9 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🧠 Equilibrium.ai 🤖")
+st.title("🧠 Pership.ai 🤖")
 st.markdown("The Talent Harmony System - Your assistant to enhance talent management.")
-st.sidebar.markdown("# Chat with Equilibrium.ai 🤖")
+st.sidebar.markdown("# Chat with Pership.ai 🤖")
 
 models = client.models.list()
 
@@ -305,7 +305,7 @@ def text_to_speech(text, language='en'):
                 
     try:
         with st.spinner("Generating speech..."):
-            with st.expander("Voice Equilibrium ai"):
+            with st.expander("Voice Pership ai"):
                 
                 # Generate the speech
                 response = client.audio.speech.create(

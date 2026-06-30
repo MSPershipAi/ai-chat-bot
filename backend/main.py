@@ -42,8 +42,8 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI App
 app = FastAPI(
-    title="Equilibrium.ai API Backend",
-    description="REST API server wrapping the Equilibrium Talent Harmony System",
+    title="Pership.ai API Backend",
+    description="REST API server wrapping the Pership.ai Talent Harmony System",
     version="1.0.0"
 )
 
@@ -176,7 +176,7 @@ async def root():
     """Health check endpoint to verify backend status."""
     return {
         "status": "online",
-        "app": "Equilibrium.ai API Backend",
+        "app": "Pership.ai API Backend",
         "version": "1.0.0",
         "available_docs_count": len(eval(get_available_docs_str())) if get_available_docs_str() != "{}" else 0
     }

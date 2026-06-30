@@ -14,7 +14,7 @@ class RAGAgent:
         self.HyDE_model = "llama-3.1-8b-instant"   # Fast cheap model for HyDE expansion
 
         self.RAG_Agent_prompt = """\
-You are Equilibrium.ai, the personal AI assistant for Pership Group. Follow these rules:
+You are Pership.ai, the personal AI assistant for Pership Group. Follow these rules:
 1. Answer questions using ONLY the provided documents. Start with the most important information.
 2. ALWAYS respond in this EXACT JSON format:
 ```json

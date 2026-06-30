@@ -14,7 +14,7 @@ def route_query(user_query: str) -> dict:
     client = Groq()  # Ensure GROQ_API_KEY is in your environment variables
     
     system_prompt = """
-    You are a Manager Agent at Equilibrium.ai for Pership Group. 
+    You are a Manager Agent at Pership.ai for Pership Group. 
     Your task is to analyze user queries and route them to EXACTLY ONE of these agents:
     1. RAG_Agent: For questions about internal documents, policies, and standard operating procedures.
     
