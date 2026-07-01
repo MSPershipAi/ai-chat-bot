@@ -55,25 +55,7 @@ docker compose version
 
 ---
 
-## Step 1 — Firewall (UFW)
-
-Open **only** ports 22 (SSH), 80 (HTTP), and 443 (HTTPS).
-
-```bash
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow ssh
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw enable
-sudo ufw status
-```
-
-> ⚠️ Do **NOT** open ports 8000, 3000, or 11434 — those stay private inside Docker.
-
----
-
-## Step 2 — Clone the repository
+## Step 1 — Clone the repository
 
 ```bash
 cd /opt
@@ -83,7 +65,7 @@ cd ai-chat-bot
 
 ---
 
-## Step 3 — Configure .env
+## Step 2 — Configure .env
 
 ```bash
 cp .env.production.example .env
