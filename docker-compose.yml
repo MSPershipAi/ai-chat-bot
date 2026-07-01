@@ -1,20 +1,99 @@
 version: "3.8"
 
+# ============================================================
+#  Architecture (100% Docker, single server)
+#
+#    Public Internet
+#         │
+#      Port 80  ──► HTTP → 301 redirect to HTTPS
+#      Port 443 ──► HTTPS (nginx)
+#                       │                │
+#               /api/*  │           /    │
+#                  backend:8000    frontend:3000
+#                       │
+#                 ollama:11434
+#
+#  ✅  Only Nginx binds host ports (80, 443).
+#  ✅  backend (8000), frontend (3000), ollama (11434)
+#      use Docker-internal 'expose' — never reachable
+#      from the host or the public internet.
+#  ✅  Inter-service calls use Docker DNS names:
+#      backend→ollama  : http://ollama:11434
+#      nginx→backend   : http://backend:8000
+#      nginx→frontend  : http://frontend:3000
+# ============================================================
+
 services:
+
+  # ── Ollama (LLM inference engine) ──────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    container_name: pership-chatbot-ollama
+    # NO 'ports' block → never reachable from outside the server
+    expose:
+      - "11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - pership-chatbot-network
+    restart: unless-stopped
+    # GPU support — uncomment if your VPS has an NVIDIA GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    healthcheck:
+      # ollama image ships with wget but not curl
+      test: ["CMD-SHELL", "wget -qO- http://localhost:11434/api/tags > /dev/null 2>&1 || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 60s
+
+  # ── Ollama model init (one-shot: pulls model on first deploy) ──
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: pership-chatbot-ollama-init
+    entrypoint: ["/bin/sh", "-c"]
+    # Change 'llama3.2' to whichever model your backend uses.
+    # This container exits after pulling; it won't run again if
+    # the model is already in the ollama-data volume.
+    command:
+      - |
+        echo "Waiting for Ollama to be ready…"
+        until wget -qO- http://ollama:11434/api/tags > /dev/null 2>&1; do
+          sleep 2
+        done
+        echo "Pulling model: ${OLLAMA_MODEL:-llama3.2}"
+        ollama pull ${OLLAMA_MODEL:-llama3.2}
+        echo "Model ready."
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    networks:
+      - pership-chatbot-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"   # run once and exit
+
+  # ── FastAPI Backend ─────────────────────────────────────────
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: pership-chatbot-backend
-    ports:
-      - "8000:8000"
+    # Only 'expose', NOT 'ports' → reachable via Docker network only
+    expose:
+      - "8000"
     env_file:
       - .env
     environment:
       - ENVIRONMENT=production
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      # Backend reaches Ollama by Docker service name (private network)
+      - OLLAMA_BASE_URL=http://ollama:11434
     volumes:
       - ./backend/FAISS_Index:/app/FAISS_Index
       - ./backend/uploaded_docs:/app/uploaded_docs
@@ -22,6 +101,9 @@ services:
     networks:
       - pership-chatbot-network
     restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_healthy
     healthcheck:
       test:
         [
@@ -35,22 +117,27 @@ services:
       retries: 3
       start_period: 40s
 
+  # ── Next.js Frontend ────────────────────────────────────────
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_BASE=${NEXT_PUBLIC_API_BASE:-http://localhost:8000}
+        # NEXT_PUBLIC_API_BASE is baked into the JS bundle at build time.
+        # Nginx proxies /api/ → backend, so the browser uses a relative path.
+        - NEXT_PUBLIC_API_BASE=${NEXT_PUBLIC_API_BASE:-/api}
     container_name: pership-chatbot-frontend
-    ports:
-      - "3000:3000"
+    # Only 'expose', NOT 'ports' → reachable via Docker network only
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
     networks:
       - pership-chatbot-network
     restart: unless-stopped
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     healthcheck:
       test:
         [
@@ -66,15 +153,17 @@ services:
       retries: 3
       start_period: 40s
 
+  # ── Nginx (ONLY public-facing service) ─────────────────────
   nginx:
     image: nginx:alpine
     container_name: pership-chatbot-nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80"     # HTTP (Phase 1 — only port needed without SSL)
+      # - "443:443" # HTTPS (Phase 2 — uncomment after adding SSL)
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
+      # - ./ssl:/etc/nginx/ssl:ro                    # Phase 2: SSL certs
+      # - certbot-webroot:/var/www/certbot:ro        # Phase 2: Let's Encrypt
     networks:
       - pership-chatbot-network
     restart: unless-stopped
@@ -87,5 +176,7 @@ networks:
     driver: bridge
 
 volumes:
+  ollama-data:      # Persists downloaded Ollama models across restarts
   faiss-data:
   uploaded-docs:
+  # certbot-webroot:  # Phase 2: uncomment when adding Let's Encrypt SSL
