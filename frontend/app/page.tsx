@@ -270,7 +270,7 @@ function ChatApp({ user }: { user: AuthUser }) {
       <div className="flex-1 flex flex-col h-full relative overflow-hidden">
 
         {/* Main Header */}
-        <header className="flex justify-between items-center px-6 py-4 bg-white dark:bg-zinc-900 shadow-sm border-b-4 border-pership-red flex-shrink-0">
+        <header className="flex justify-between items-center px-3 py-3 sm:px-6 sm:py-4 bg-white dark:bg-zinc-900 shadow-sm border-b-4 border-pership-red flex-shrink-0">
           <div className="flex items-center gap-3">
             {/* Logo */}
             <div className="w-10 h-10 flex items-center justify-center overflow-hidden bg-pership-red/5 dark:bg-white/5 rounded-lg border border-gray-100 dark:border-zinc-800 p-1">
@@ -286,11 +286,11 @@ function ChatApp({ user }: { user: AuthUser }) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             {isPlayingAudio && (
-              <div className="flex space-x-1 items-center bg-green-50 dark:bg-green-950/20 text-green-600 px-2.5 py-1 rounded-full text-xs font-semibold border border-green-200 dark:border-green-900/30 animate-pulse">
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                <span>Playing Audio</span>
+              <div className="flex space-x-1 items-center bg-green-50 dark:bg-green-950/20 text-green-600 px-2 py-1 rounded-full text-xs font-semibold border border-green-200 dark:border-green-900/30 animate-pulse">
+                <span className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></span>
+                <span className="hidden sm:inline">Playing Audio</span>
               </div>
             )}
 
@@ -299,9 +299,10 @@ function ChatApp({ user }: { user: AuthUser }) {
             {user.role === "admin" && (
               <Link
                 href="/dashboard"
-                className="px-3 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-pership-blue dark:hover:text-blue-400 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
+                className="px-2 sm:px-3 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-pership-blue dark:hover:text-blue-400 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
               >
-                ⚙️ Admin
+                <span>⚙️</span>
+                <span className="hidden sm:inline">Admin</span>
               </Link>
             )}
 
@@ -310,17 +311,19 @@ function ChatApp({ user }: { user: AuthUser }) {
                 logout();
                 router.push("/login");
               }}
-              className="px-3 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase tracking-wider shadow-sm"
+              className="px-2 sm:px-3 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase tracking-wider shadow-sm flex items-center gap-1"
             >
-              Sign Out
+              <span className="sm:hidden">↩</span>
+              <span className="hidden sm:inline">Sign Out</span>
             </button>
 
             <button
               onClick={clearChat}
               disabled={messages.length === 0}
-              className="px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-pership-red dark:hover:text-red-400 border border-gray-200 dark:border-zinc-700 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
+              className="px-2 sm:px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 hover:text-pership-red dark:hover:text-red-400 border border-gray-200 dark:border-zinc-700 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
             >
-              🗑️ Clear Chat
+              <span>🗑️</span>
+              <span className="hidden sm:inline">Clear Chat</span>
             </button>
           </div>
         </header>
@@ -331,14 +334,14 @@ function ChatApp({ user }: { user: AuthUser }) {
           {/* Welcome Screen */}
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center min-h-[60vh] text-center space-y-4 max-w-2xl mx-auto px-4">
-              <div className="flex items-center justify-center w-20 h-20 rounded-full border-[3px] border-pership-red bg-pership-red/5 dark:bg-pership-red/10 mb-2 text-pership-red shadow-sm animate-pulse">
-                <span className="text-4xl font-black italic pr-1">P</span>
+              <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full border-[3px] border-pership-red bg-pership-red/5 dark:bg-pership-red/10 mb-2 text-pership-red shadow-sm animate-pulse">
+                <span className="text-3xl sm:text-4xl font-black italic pr-1">P</span>
               </div>
-              <h2 className="text-3xl font-extrabold text-pership-blue dark:text-white uppercase tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-pership-blue dark:text-white uppercase tracking-tight">
                 Pership AI Assistant
               </h2>
-              <p className="text-gray-600 dark:text-zinc-400 text-lg font-medium">
-                "With Great Knowledge, Comes Great Power!"
+              <p className="text-gray-600 dark:text-zinc-400 text-base sm:text-lg font-medium">
+                &quot;With Great Knowledge, Comes Great Power!&quot;
               </p>
               <p className="text-sm font-medium text-gray-400 dark:text-zinc-500 max-w-lg leading-relaxed">
                 Seamlessly search internal documents, freight standard operations, Inland Container Terminal policies, dress code guidelines, or leverage general knowledge.
@@ -515,15 +518,15 @@ function ChatApp({ user }: { user: AuthUser }) {
         </main>
 
         {/* Input Footer Container */}
-        <footer className="p-4 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] flex-shrink-0">
-          <form onSubmit={(e) => sendMessage(e)} className="flex gap-3 max-w-4xl mx-auto">
+        <footer className="p-3 sm:p-4 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] flex-shrink-0">
+          <form onSubmit={(e) => sendMessage(e)} className="flex gap-2 sm:gap-3 max-w-4xl mx-auto">
 
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask your Pership Assistant..."
-              className="flex-1 p-3 px-5 border border-gray-300 dark:border-zinc-700 rounded-full focus:outline-none focus:ring-2 focus:ring-pership-red focus:border-transparent bg-gray-50 dark:bg-zinc-800 text-gray-900 dark:text-white transition-all shadow-inner font-medium text-sm"
+              className="flex-1 p-3 px-4 sm:px-5 border border-gray-300 dark:border-zinc-700 rounded-full focus:outline-none focus:ring-2 focus:ring-pership-red focus:border-transparent bg-gray-50 dark:bg-zinc-800 text-gray-900 dark:text-white transition-all shadow-inner font-medium text-sm"
               disabled={isLoading || isRecording}
             />
 
@@ -532,10 +535,11 @@ function ChatApp({ user }: { user: AuthUser }) {
               type="button"
               onClick={isRecording ? stopRecording : startRecording}
               disabled={isLoading}
-              className={`p-3 rounded-full shadow transition-all transform active:scale-95 flex items-center justify-center ${isRecording
+              className={`p-3 rounded-full shadow transition-all transform active:scale-95 flex items-center justify-center flex-shrink-0 ${
+                isRecording
                 ? "bg-red-500 text-white animate-bounce"
                 : "bg-gray-100 hover:bg-gray-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-gray-600 dark:text-zinc-300"
-                }`}
+              }`}
               title="Speak to Assistant"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -547,9 +551,9 @@ function ChatApp({ user }: { user: AuthUser }) {
             <button
               type="submit"
               disabled={isLoading || isRecording || !input.trim()}
-              className="px-6 py-3 bg-pership-red text-white font-extrabold rounded-full hover:bg-opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition transform active:scale-95 shadow-md flex items-center justify-center gap-2 text-sm uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 bg-pership-red text-white font-extrabold rounded-full hover:bg-opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition transform active:scale-95 shadow-md flex items-center justify-center gap-2 text-sm uppercase tracking-wider flex-shrink-0"
             >
-              <span>Send</span>
+              <span className="hidden sm:inline">Send</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>

@@ -43,11 +43,16 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gray-50 dark:bg-zinc-950 font-sans text-gray-900 dark:text-gray-100">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-zinc-950 font-sans text-gray-900 dark:text-gray-100 px-4 py-8">
       <form
         onSubmit={handleSubmit}
-        className="p-8 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl shadow-lg max-w-sm w-full"
+        className="p-6 sm:p-8 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl shadow-lg max-w-sm w-full"
       >
+        <div className="flex justify-center mb-4">
+          <div className="w-10 h-10 rounded-full bg-pership-red flex items-center justify-center text-white font-black text-lg shadow">
+            P
+          </div>
+        </div>
         <h2 className="text-2xl font-black mb-2 text-center text-pership-blue dark:text-zinc-200">
           Sign In
         </h2>

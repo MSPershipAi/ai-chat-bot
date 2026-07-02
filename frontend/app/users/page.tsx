@@ -94,28 +94,31 @@ function UsersContent({ currentUser }: { currentUser: AuthUser }) {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 dark:bg-zinc-950 font-sans text-gray-900 dark:text-gray-100 p-6 md:p-12 overflow-hidden">
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-zinc-950 font-sans text-gray-900 dark:text-gray-100 p-3 sm:p-6 md:p-12 overflow-hidden">
       <div className="max-w-4xl mx-auto w-full flex-1 flex flex-col bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-xl overflow-hidden">
-        <header className="p-6 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50">
-          <div>
-            <h1 className="text-xl font-extrabold uppercase tracking-wider text-pership-blue dark:text-zinc-200">
-              User Management
+        <header className="p-4 sm:p-6 border-b border-gray-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50 dark:bg-zinc-900/50 gap-3">
+          <div className="min-w-0">
+            <h1 className="text-sm sm:text-xl font-extrabold uppercase tracking-wider text-pership-blue dark:text-zinc-200 leading-tight">
+              <span className="sm:hidden">Users</span>
+              <span className="hidden sm:inline">User Management</span>
             </h1>
-            <p className="text-xs text-gray-500 mt-1">Signed in as {currentUser.email}</p>
+            <p className="text-xs text-gray-500 mt-1 truncate">Signed in as {currentUser.email}</p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
             <ThemeToggle />
             <button
               onClick={() => router.push("/dashboard")}
-              className="px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase shadow-sm"
+              className="px-2 sm:px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase shadow-sm flex items-center gap-1"
             >
-              Dashboard
+              <span>⚙️</span>
+              <span className="hidden sm:inline">Dashboard</span>
             </button>
             <button
               onClick={() => router.push("/")}
-              className="px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase shadow-sm"
+              className="px-2 sm:px-4 py-2 text-xs font-bold text-gray-600 dark:text-zinc-300 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 border border-gray-200 dark:border-zinc-700 rounded-lg transition-colors uppercase shadow-sm flex items-center gap-1"
             >
-              Chat
+              <span>💬</span>
+              <span className="hidden sm:inline">Chat</span>
             </button>
           </div>
         </header>

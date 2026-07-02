@@ -131,10 +131,26 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    height: 100%;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+  }
+  /* Prevent iOS from zooming on input focus — font-size >= 16px avoids auto-zoom */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px;
+  }
+  /* Ensure comfortable touch tap targets */
+  button, a {
+    min-height: 36px;
   }
 }
